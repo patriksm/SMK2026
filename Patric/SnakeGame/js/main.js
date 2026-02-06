@@ -36,7 +36,7 @@ function drawGame() { //funciton for drawing the graphics
     snakeX = snakeCoords[0].x; // snakeX is the temporary variable which stores the copy of the snake head x position
     snakeY = snakeCoords[0].y;
 
-    snakeX += BOX; // calculation of a new head position
+    snakeX += BOX; // calculation of a new head position, snake moves to the right
 
     snakeCoords.pop(); // POP command deletes the last element in the array
 
