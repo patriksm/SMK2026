@@ -27,26 +27,25 @@ function drawGame() { //funciton for drawing the graphics
     ctx.drawImage(myPlayground, 0, 0); //draws the background
     ctx.drawImage(food, BOX * foodCoords.x, BOX * foodCoords.y); //draws the background
 
-    for (let i = 0; i < snakeCoords.length; i++) {
+    for (let i = 0; i < snakeCoords.length; i++) { //cycle for drawing all the elements of the snake
         ctx.fillStyle = "green";
         ctx.fillRect(snakeCoords[i].x, snakeCoords[i].y, BOX, BOX);
     }
 
 
-    snakeX = snakeCoords[0].x;
+    snakeX = snakeCoords[0].x; // snakeX is the temporary variable which stores the copy of the snake head x position
     snakeY = snakeCoords[0].y;
 
-    snakeX += BOX;
+    snakeX += BOX; // calculation of a new head position
 
-    snakeCoords.pop();
+    snakeCoords.pop(); // POP command deletes the last element in the array
 
-    let newHead = {
+    let newHead = { //the new head is defined as an object
         x: snakeX,
         y: snakeY
     }
 
-    snakeCoords.unshift(newHead);
-    console.log(snakeCoords);
+    snakeCoords.unshift(newHead); // coordinates of new head are placed in the beginning of the array to display the snake movement.
 }
 
 myGame = setInterval(drawGame, 100); //refresh the drawn function each 100 ms. 
