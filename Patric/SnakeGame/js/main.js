@@ -13,8 +13,8 @@ let foodCoords = {
 
 let snakeCoords = [];
 snakeCoords[0] = {
-    x: 5 * BOX,
-    y: 7 * BOX
+    x: 9 * BOX,
+    y: 10 * BOX
 }
 
 let myPlayground = new Image(); //creates and image object
@@ -27,7 +27,20 @@ function drawGame() { //funciton for drawing the graphics
     ctx.drawImage(myPlayground, 0, 0); //draws the background
     ctx.drawImage(food, BOX * foodCoords.x, BOX * foodCoords.y); //draws the background
 
+    ctx.fillStyle = "green";
+    ctx.fillRect(snakeCoords[0].x, snakeCoords[0].y, BOX, BOX);
 
+    snakeX = snakeCoords[0].x;
+    snakeY = snakeCoords[0].y;
+
+    snakeX += BOX;
+
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    snakeCoords.unshift(newHead);
 }
 
 myGame = setInterval(drawGame, 100); //refresh the drawn function each 100 ms. 
