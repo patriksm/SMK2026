@@ -11,6 +11,12 @@ let foodCoords = {
 //Math.random funciton returns a randome value from 0 to 1 not including 1 or 0 
 //Math.floor function cuts the decimal part of the number, t.i. if you have Math.floor(5.6459) = 5 
 
+let snakeCoords = [];
+snakeCoords[0] = {
+    x: 5 * BOX,
+    y: 7 * BOX
+}
+
 let myPlayground = new Image(); //creates and image object
 myPlayground.src = "img/ground.png"; //shows the path to the image
 
