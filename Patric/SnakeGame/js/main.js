@@ -26,12 +26,15 @@ food.src = "img/mango.png";
 let dir = '';
 
 document.addEventListener("keydown", (e) => {
-    dir = 'right';
+    if (e.code == 'KeyD') dir = 'right';
+    if (e.code == 'KeyA') dir = 'left';
+    if (e.code == 'KeyW') dir = 'up';
+    if (e.code == 'KeyS') dir = 'down';
 });
 
-document.addEventListener("keyup", (e) => {
-    dir = '';
-});
+// document.addEventListener("keyup", (e) => {
+//     dir = '';
+// });
 
 function drawGame() { //funciton for drawing the graphics
     ctx.drawImage(myPlayground, 0, 0); //draws the background
@@ -47,6 +50,9 @@ function drawGame() { //funciton for drawing the graphics
     snakeY = snakeCoords[0].y;
 
     if (dir == 'right') snakeX += BOX; // calculation of a new head position, snake moves to the right
+    if (dir == 'left') snakeX -= BOX;
+    if (dir == 'up') snakeY -= BOX;
+    if (dir == 'down') snakeY += BOX;
 
     snakeCoords.pop(); // POP command deletes the last element in the array
 
