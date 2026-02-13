@@ -26,10 +26,10 @@ food.src = "img/mango.png";
 let dir = '';
 
 document.addEventListener("keydown", (e) => {
-    if (e.code == 'KeyD') dir = 'right';
-    if (e.code == 'KeyA') dir = 'left';
-    if (e.code == 'KeyW') dir = 'up';
-    if (e.code == 'KeyS') dir = 'down';
+    if (e.code == 'KeyD' && dir != "left") dir = 'right';
+    if (e.code == 'KeyA' && dir != "right") dir = 'left';
+    if (e.code == 'KeyW' && dir != "down") dir = 'up';
+    if (e.code == 'KeyS' && dir != "up") dir = 'down';
 });
 
 // document.addEventListener("keyup", (e) => {
