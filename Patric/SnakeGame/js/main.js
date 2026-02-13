@@ -6,7 +6,7 @@ const BOX = 32;
 
 let foodCoords = {
     x: Math.floor(1 + 17 * Math.random()),
-    y: 3
+    y: Math.floor(3 + 15 * Math.random())
 }
 //Math.random funciton returns a randome value from 0 to 1 not including 1 or 0 
 //Math.floor function cuts the decimal part of the number, t.i. if you have Math.floor(5.6459) = 5 
@@ -23,6 +23,16 @@ myPlayground.src = "img/ground.png"; //shows the path to the image
 let food = new Image();
 food.src = "img/mango.png";
 
+let dir = '';
+
+document.addEventListener("keydown", (e) => {
+    dir = 'right';
+});
+
+document.addEventListener("keyup", (e) => {
+    dir = '';
+});
+
 function drawGame() { //funciton for drawing the graphics
     ctx.drawImage(myPlayground, 0, 0); //draws the background
     ctx.drawImage(food, BOX * foodCoords.x, BOX * foodCoords.y); //draws the background
@@ -36,7 +46,7 @@ function drawGame() { //funciton for drawing the graphics
     snakeX = snakeCoords[0].x; // snakeX is the temporary variable which stores the copy of the snake head x position
     snakeY = snakeCoords[0].y;
 
-    snakeX += BOX; // calculation of a new head position, snake moves to the right
+    if (dir == 'right') snakeX += BOX; // calculation of a new head position, snake moves to the right
 
     snakeCoords.pop(); // POP command deletes the last element in the array
 
