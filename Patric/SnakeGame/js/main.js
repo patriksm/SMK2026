@@ -57,7 +57,7 @@ function drawGame() { //funciton for drawing the graphics
     if (snakeX > 17 * BOX || snakeX < 1 * BOX || snakeY > 17 * BOX || snakeY < 3 * BOX) {
         ctx.font = "50px Arial";
         ctx.fillStyle = "red";
-        ctx.fillText(`GAME OVER!`, 5* BOX, 11 * BOX);
+        ctx.fillText(`GAME OVER!`, 5 * BOX, 11 * BOX);
         clearInterval(myGame);
     }
 
@@ -81,7 +81,20 @@ function drawGame() { //funciton for drawing the graphics
         y: snakeY
     }
 
+    hasSnakeEatenItself(snakeCoords, newHead);
+
     snakeCoords.unshift(newHead); // coordinates of new head are placed in the beginning of the array to display the snake movement.
 }
 
 myGame = setInterval(drawGame, 100); //refresh the drawn function each 100 ms. 
+
+function hasSnakeEatenItself(snake, head) {
+    for (let i = 0; i < snake.length; i++) {
+        if (snake[i].x == head.x && snake[i].y == head.y) {
+            ctx.font = "50px Arial";
+            ctx.fillStyle = "orange";
+            ctx.fillText(`GAME OVER!`, 5 * BOX, 11 * BOX);
+            clearInterval(myGame);
+        }
+    }
+}
