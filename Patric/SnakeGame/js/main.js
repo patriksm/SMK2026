@@ -46,7 +46,7 @@ function drawGame() { //funciton for drawing the graphics
     ctx.fillText(`Score: ${score}`, BOX, 2 * BOX);
 
     for (let i = 0; i < snakeCoords.length; i++) { //cycle for drawing all the elements of the snake
-        ctx.fillStyle = "green";
+        ctx.fillStyle = i == 0 ? "yellow" : "green";
         ctx.fillRect(snakeCoords[i].x, snakeCoords[i].y, BOX, BOX);
     }
 
