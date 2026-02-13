@@ -24,6 +24,7 @@ let food = new Image();
 food.src = "img/mango.png";
 
 let dir = '';
+let score = 0;
 
 document.addEventListener("keydown", (e) => {
     if (e.code == 'KeyD' && dir != "left") dir = 'right';
@@ -40,6 +41,10 @@ function drawGame() { //funciton for drawing the graphics
     ctx.drawImage(myPlayground, 0, 0); //draws the background
     ctx.drawImage(food, foodCoords.x, foodCoords.y); //draws the background
 
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText(`Score: ${score}`, BOX, 2 * BOX);
+
     for (let i = 0; i < snakeCoords.length; i++) { //cycle for drawing all the elements of the snake
         ctx.fillStyle = "green";
         ctx.fillRect(snakeCoords[i].x, snakeCoords[i].y, BOX, BOX);
@@ -48,6 +53,13 @@ function drawGame() { //funciton for drawing the graphics
 
     snakeX = snakeCoords[0].x; // snakeX is the temporary variable which stores the copy of the snake head x position
     snakeY = snakeCoords[0].y;
+
+    if (snakeX > 17 * BOX || snakeX < 1 * BOX || snakeY > 17 * BOX || snakeY < 3 * BOX) {
+        ctx.font = "50px Arial";
+        ctx.fillStyle = "red";
+        ctx.fillText(`GAME OVER!`, 5* BOX, 11 * BOX);
+        clearInterval(myGame);
+    }
 
     if (dir == 'right') snakeX += BOX; // calculation of a new head position, snake moves to the right
     if (dir == 'left') snakeX -= BOX;
@@ -59,11 +71,10 @@ function drawGame() { //funciton for drawing the graphics
             x: BOX * Math.floor(1 + 17 * Math.random()),
             y: BOX * Math.floor(3 + 15 * Math.random())
         }
+        score++;
     } else {
         snakeCoords.pop(); // POP command deletes the last element in the array
     }
-
-
 
     let newHead = { //the new head is defined as an object
         x: snakeX,
