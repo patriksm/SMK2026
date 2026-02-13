@@ -5,8 +5,8 @@ const BOX = 32;
 // total size of playground is 608 x 608, there are 19 squares in each direction, that means that each small square is of size 32x32 so we make a vriable BOX = 32 to say the size of each little square
 
 let foodCoords = {
-    x: Math.floor(1 + 17 * Math.random()),
-    y: Math.floor(3 + 15 * Math.random())
+    x: BOX * Math.floor(1 + 17 * Math.random()),
+    y: BOX * Math.floor(3 + 15 * Math.random())
 }
 //Math.random funciton returns a randome value from 0 to 1 not including 1 or 0 
 //Math.floor function cuts the decimal part of the number, t.i. if you have Math.floor(5.6459) = 5 
@@ -38,7 +38,7 @@ document.addEventListener("keydown", (e) => {
 
 function drawGame() { //funciton for drawing the graphics
     ctx.drawImage(myPlayground, 0, 0); //draws the background
-    ctx.drawImage(food, BOX * foodCoords.x, BOX * foodCoords.y); //draws the background
+    ctx.drawImage(food, foodCoords.x, foodCoords.y); //draws the background
 
     for (let i = 0; i < snakeCoords.length; i++) { //cycle for drawing all the elements of the snake
         ctx.fillStyle = "green";
@@ -54,7 +54,16 @@ function drawGame() { //funciton for drawing the graphics
     if (dir == 'up') snakeY -= BOX;
     if (dir == 'down') snakeY += BOX;
 
-    snakeCoords.pop(); // POP command deletes the last element in the array
+    if (snakeX == foodCoords.x && snakeY == foodCoords.y) {
+        foodCoords = {
+            x: BOX * Math.floor(1 + 17 * Math.random()),
+            y: BOX * Math.floor(3 + 15 * Math.random())
+        }
+    } else {
+        snakeCoords.pop(); // POP command deletes the last element in the array
+    }
+
+
 
     let newHead = { //the new head is defined as an object
         x: snakeX,
